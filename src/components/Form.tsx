@@ -1,21 +1,16 @@
 //Form.tsx
+type FormProps = {
+    setCity: React.Dispatch<React.SetStateAction<string>>
+    getWeather: (e: any) => void
+}
 
-import { useState } from "react"
 
-const Form = () =>{
-    const [city , setCity] = useState<string>("")
-    const getWeather = (e:any) => {
-        e.preventDefault()
-        fetch("https://api.weatherapi.com/v1/current.json?key=b5c77b27a2234da6859121952241408&q=London&aqi=no")
-            .then(res => res.json())
-            .then(data => console.log(data))
-    }
+const Form = (props: FormProps) =>{
     return(
         <form>
-            <input type="text" name="city" placeholder="都市名" value={city} onChange={e => setCity(e.target.value)}/>
-            <button type="submit" onClick={getWeather}>Get Weather</button>
+            <input type="text" name="city" placeholder="都市名"  onChange={e => props.setCity(e.target.value)}/>
+            <button type="submit" onClick={props.getWeather}>Get Weather</button>
         </form>
     )
 }
-
 export default Form
