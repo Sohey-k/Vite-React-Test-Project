@@ -1,15 +1,18 @@
+import React from "react"
+
+
 //Form.tsx
 type FormProps = {
     setCity: React.Dispatch<React.SetStateAction<string>>
-    getWeather: (e: any) => void
+    getWeather: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
 
 const Form = (props: FormProps) =>{
     return(
-        <form>
+        <form onSubmit={props.getWeather}>
             <input type="text" name="city" placeholder="都市名"  onChange={e => props.setCity(e.target.value)}/>
-            <button type="submit" onClick={props.getWeather}>Get Weather</button>
+            <button type="submit">Get Weather</button>
         </form>
     )
 }
