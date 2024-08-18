@@ -29,7 +29,7 @@ const App = () => {
     const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
-        fetch(`https://api.weatherapi.com/v1/current.json?key=b5c77b27a2234da6859121952241408&q=${city}&aqi=no`)
+        fetch(`https://proxy-server-p0uaqncxe-sohey-ks-projects.vercel.app/weather-data?${city}`)
             .then(res => res.json())
             .then(data => {
                 setResults({
