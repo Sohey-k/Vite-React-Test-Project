@@ -29,7 +29,7 @@ const App = () => {
     const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
-        fetch(`https://proxy-server-umber-phi.vercel.app//weather-data?${city}`)
+        fetch(`https://proxy-server-umber-phi.vercel.app/weather-data?${city}`)
             .then(res => res.json())
             .then(data => {
                 setResults({
