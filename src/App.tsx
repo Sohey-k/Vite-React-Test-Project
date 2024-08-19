@@ -15,17 +15,20 @@ type ResultsState = {
     icon: string
 }
 
+// デフォルトのresultsオブジェクトを定義
+const defaultResults: ResultsState = {
+    country: "",
+    cityName: "",
+    temperrature: "",
+    conditionText: "",
+    icon: ""
+};
+
 
 const App = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [city, setCity] = useState<string>("")
-    const [results, setResults] = useState<ResultsState>({
-        country: "",
-        cityName: "",
-        temperrature: "",
-        conditionText: "",
-        icon: ""
-    })
+    const [results, setResults] = useState<ResultsState>(defaultResults)
 
     const [error, setError] = useState<string | null>(null); // エラー状態を追加
 
@@ -36,9 +39,9 @@ const App = () => {
         fetch(`https://proxy-server-umber-phi.vercel.app/weather-data?${city}`)
             .then(res => {
                 if (!res.ok) {
-                    throw new Error("データの取得に失敗しました");
+                    throw new Error("データの取得に失敗しました")
                 }
-                return res.json();
+                return res.json()
             })
             .then(data => {
                 setResults({
@@ -52,8 +55,10 @@ const App = () => {
                 setCity("")
             })
             .catch(() => {
-                setError("都市名が間違っているか、接続に問題がある可能性があります。もう一度確認してください。"); // エラーメッセージを設定
-                setLoading(false);
+                setError("都市名が間違っているか、接続に問題がある可能性があります。もう一度確認してください。") // エラーメッセージを設定
+                setLoading(false)
+                setCity("")
+                setResults(defaultResults)
             });
     }
     return (
@@ -71,4 +76,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default App
