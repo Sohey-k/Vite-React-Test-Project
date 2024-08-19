@@ -26,11 +26,20 @@ const App = () => {
         conditionText: "",
         icon: ""
     })
+
+    const [error, setError] = useState<string | null>(null); // エラー状態を追加
+
     const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
+        setError(null)
         fetch(`https://proxy-server-umber-phi.vercel.app/weather-data?${city}`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("データの取得に失敗しました");
+                }
+                return res.json();
+            })
             .then(data => {
                 setResults({
                     country: data.location.country,
@@ -42,7 +51,10 @@ const App = () => {
                 setLoading(false)
                 setCity("")
             })
-            .catch(() => alert("エラーが発生しました。ページをリロードしてもう一度入力してください。"))
+            .catch(() => {
+                setError("都市名が間違っているか、接続に問題がある可能性があります。もう一度確認してください。"); // エラーメッセージを設定
+                setLoading(false);
+            });
     }
     return (
         <div className="wrapper">
@@ -53,6 +65,7 @@ const App = () => {
                     city={city}
                 />
                 {loading ? <Loading /> : <Results results={results} />}
+                {error && <div className="error-message">{error}</div>} {/* エラーメッセージを表示 */}
             </div>
         </div>
     );
