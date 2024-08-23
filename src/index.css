@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=REM:ital,wght@0,100..900;1,100..900&display=swap');
 
 html {
     font-size: 62.5%;
 }
 
 body {
-    font-family: 'Raleway','Noto Sans JP', sans-serif;
+    font-family: "REM", sans-serif;
     font-weight: 400;
     font-size: 1.6rem;
     font-display: swap;
@@ -22,7 +24,7 @@ body {
    display: flex;
    justify-content: center;
    align-items: center; 
-   background: url("./assets/background-image.jpg") center center no-repeat;
+   background: url("./assets/mornigbackground.png") center center no-repeat;
    background-size: cover;
 }
 
